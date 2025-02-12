@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+
+<!-- header section starts -->
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+<!-- end header section -->
+
+<main>
+    <section class="h-100" style="background-color: #eee;">
+        <div class="container h-100 py-5">
+            <!-- burger menu section -->
+            <section class="food_section layout_padding">
+                <div class="container">
+                    <div class="heading_container heading_center">
+                        <h2>
+                            Burger
+                        </h2>
+                    </div>
+                    <div class="filters-content">
+                        <div class="row grid">
+                            <div th:each="burgerProducts : ${burgerProducts}" class="col-sm-6 col-lg-4 all burger">
+                                <div class="box">
+                                    <div>
+                                        <tr>
+                                            <td class="bg-info">
+                                            </td>
+                                            <div class="img-box">
+                                                <img th:src="${'/images/' + burgerProducts.imageUrl}" alt="">
+                                            </div>
+                                            <div class="detail-box">
+                                                <h5>
+                                                    <td th:text="|*{burgerProducts.name}|"></td>
+                                                </h5>
+                                                <p>
+                                                    <td th:text="|*{burgerProducts.description}|"></td>
+                                                </p>
+
+                                                <div class="options">
+                                                    <h6>
+                                                        <td th:text="|${#numbers.formatDecimal(burgerProducts.price, 1, 2, 'POINT')} €|"
+                                                            class="bg-primary" style="width: 20%"></td>
+                                                    </h6>
+                                                    <a th:href="@{/shoppingCart/addProduct/{id}(id=*{burgerProducts.id})}" sec:authorize="isAuthenticated()">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                        </svg>
+                                                        <i class="bi bi-cart"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end burger menu section -->
+
+            <!-- pizza menu section -->
+            <section class="food_section layout_padding">
+                <div class="container">
+                    <div class="heading_container heading_center">
+                        <h2>
+                            Pizza
+                        </h2>
+                    </div>
+                    <div class="filters-content">
+                        <div class="row grid">
+                            <div th:each="pizzaProducts : ${pizzaProducts}" class="col-sm-6 col-lg-4 all pizza">
+                                <div class="box">
+                                    <div>
+                                        <tr>
+                                            <td class="bg-info">
+                                            </td>
+                                            <div class="img-box">
+                                                <img th:src="${'/images/' + pizzaProducts.imageUrl}" alt="">
+                                            </div>
+                                            <div class="detail-box">
+                                                <h5>
+                                                    <td th:text="|*{pizzaProducts.name}|"></td>
+                                                </h5>
+                                                <p>
+                                                    <td th:text="|*{pizzaProducts.description}|"></td>
+                                                </p>
+
+                                                <div class="options">
+                                                    <h6>
+                                                        <td th:text="|${#numbers.formatDecimal(pizzaProducts.price, 1, 2, 'POINT')} €|"
+                                                            class="bg-primary" style="width: 20%"></td>
+                                                    </h6>
+                                                    <a th:href="@{/shoppingCart/addProduct/{id}(id=*{pizzaProducts.id})}" sec:authorize="isAuthenticated()">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                        </svg>
+                                                        <i class="bi bi-cart"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- end pizza menu section -->
+
+            <!-- pasta menu section -->
+            <section class="food_section layout_padding">
+                <div class="container">
+                    <div class="heading_container heading_center">
+                        <h2>
+                            Pasta
+                        </h2>
+                    </div>
+
+                    <div class="filters-content">
+                        <div class="row grid">
+                            <div th:each="pastaProducts : ${pastaProducts}" class="col-sm-6 col-lg-4 all pasta">
+                                <div class="box">
+                                    <div>
+                                        <tr>
+                                            <td class="bg-info">
+                                            </td>
+                                            <div class="img-box">
+                                                <img th:src="${'/images/' + pastaProducts.imageUrl}" alt="">
+                                            </div>
+                                            <div class="detail-box">
+                                                <h5>
+                                                    <td th:text="|*{pastaProducts.name}|"></td>
+                                                </h5>
+                                                <p>
+                                                    <td th:text="|*{pastaProducts.description}|"></td>
+                                                </p>
+
+                                                <div class="options">
+                                                    <h6>
+                                                        <td th:text="|${#numbers.formatDecimal(pastaProducts.price, 1, 2, 'POINT')} €|"
+                                                            class="bg-primary" style="width: 20%"></td>
+
+                                                    </h6>
+                                                    <a th:href="@{/shoppingCart/addProduct/{id}(id=*{pastaProducts.id})}" sec:authorize="isAuthenticated()">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                        </svg>
+                                                        <i class="bi bi-cart"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end pasta menu section -->
+        </div>
+    </section>
+</main>
+<!-- footer section -->
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+
+</html>

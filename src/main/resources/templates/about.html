@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+
+<!-- header section starts -->
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+<!-- end header section -->
+
+<!-- about section -->
+<section class="about_section layout_padding">
+    <div class="container  ">
+
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="img-box">
+                    <img src="/images/aboutus-img.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h2>
+                            Our restaurants
+                        </h2>
+                    </div>
+                    <p>
+                        Our restaurants operate in the center of the regional city of Blagoevgrad.
+                        Behind our name are teams of enthusiasts who, year after year, realized and upgraded the project
+                        of their dreams.
+                        It all started in 2012.
+                    <p>
+                        What we strive for is good service, innovative and non-standard methods for food preparation,
+                        the use of quality food products and special attention to the presentation of each dish.
+                    </p>
+                    <p>
+                    With the joint efforts of our team, we also implemented this company website, through which food can
+                    now reach your home by placing an order from home and having it delivered.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end about section -->
+
+
+<!-- footer section -->
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+
+</html>

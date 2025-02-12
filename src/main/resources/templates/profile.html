@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+
+<!-- header section starts -->
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+<!-- end header section -->
+
+<section class="h-100" style="background-color: #eee;">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-10">
+                <section class="book_section layout_padding">
+                    <div class="container">
+                        <div class="heading_container">
+                            <h2>
+                                User Details
+                            </h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Profile Picture</div>
+                                        <div class="card-body text-center">
+                                            <img th:src="${'/images/' + loggedUserDetails.getImageProfileUrl()}" class="img-account-profile rounded-circle mb-2" width="300" height="300">
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <!-- Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">Account Details</div>
+                                    <div class="card-body">
+                                            <!-- Form Group (username)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputUsername">Username</label>
+                                                <input class="form-control" id="inputUsername" type="text" th:value="${#authentication.name}" disabled/>
+                                            </div>
+                                            <!-- Form Group (email address)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                                <input class="form-control" id="inputEmailAddress" type="email" th:value="|*{loggedUserDetails.email}|" disabled/>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="food_section layout_padding">
+                                <div class="btn-box">
+
+                                    <a href="/profile-edit" title="Edit Profile">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                        </svg>
+                                        Edit Profile
+                                    </a>
+
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+</section>
+
+<!-- footer section -->
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+
+</html>

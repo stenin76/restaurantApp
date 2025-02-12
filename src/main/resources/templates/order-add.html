@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+
+<!-- header section starts -->
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+<!-- end header section -->
+
+<section class="h-100" style="background-color: #eee;">
+    <div class="container h-100 py-5">
+        <section class="book_section layout_padding">
+            <div class="container">
+                <div class="heading_container">
+                    <h2>
+                        Add Order form
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form_container">
+                            <form th:action="@{/order-add}"
+                                  th:method="post"
+                                  th:object="${orderAddDto}">
+                                <div>
+                                    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+                                       class="errors alert alert-danger"></p>
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Address"
+                                           id="address" name="address"
+                                           th:field="*{address}"/>
+
+                                </div>
+                                <div>
+                                    <p th:if="${#fields.hasErrors('number')}" th:errors="*{number}"
+                                       class="errors alert alert-danger"></p>
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Number"
+                                           id="number" name="number"
+                                           th:field="*{number}"/>
+                                </div>
+                                <div class="btn_box">
+                                    <button>
+                                        Add Order
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<!-- footer section -->
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+
+</html>

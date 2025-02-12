@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- header section starts -->
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+<!-- end header section -->
+
+<main>
+    <div class="hero_area">
+        <div class="bg-box">
+            <img src="/images/logo.jpg" alt="">
+        </div>
+        <section class="slider_section">
+            <div class="container">
+                <div class="col-md-7 col-lg-6 ">
+                    <div class="detail-box">
+                        <h1>
+                            JOE'S Food Restaurants
+                        </h1>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Our Restaurants
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item" href="/resturant1">Restaurant_1</a></li>
+                                <li><a class="dropdown-item" href="/resturant2">Restaurant_2</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- footer section -->
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+
+</html>

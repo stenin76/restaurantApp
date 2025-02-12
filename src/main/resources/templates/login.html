@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+
+<!-- header section starts -->
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+<!-- end header section -->
+
+<section class="h-100" style="background-color: #eee;">
+    <div class="container h-100 py-5">
+        <section class="book_section layout_padding">
+            <div class="container">
+                <div class="heading_container">
+                    <h2>
+                        Login
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form_container">
+                            <form th:action="@{/login}"
+                                  th:method="post">
+
+                                <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                                    Invalid username or password.
+                                </p>
+                                <div>
+                                    <small
+                                            class="text-danger"></small>
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Username"
+                                           id="username" name="username"/>
+                                </div>
+                                <div>
+                                    <small
+                                            class="text-danger"></small>
+                                    <input type="password"
+                                           class="form-control"
+                                           placeholder="Password"
+                                           id="password" name="password"/>
+                                </div>
+                                <div class="btn_box">
+                                    <button>
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<!-- footer section -->
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+
+</html>

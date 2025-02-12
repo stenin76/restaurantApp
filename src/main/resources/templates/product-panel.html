@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+
+<div class="fixed-top">
+    <header class="header_section">
+        <div th:replace="~{fragments/navbar}"></div>
+    </header>
+</div>
+
+<section class="h-100" style="background-color: #eee;">
+    <div class="container h-100 py-5">
+        <section class="book_section layout_padding">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${allProducts}" >
+                    <th scope="row">
+                        <div class="img-box">
+                            <img th:src="${'/images/' + product.getImageUrl()}" alt="" width="100"
+                                 height="100">
+                        </div>
+                    </th>
+                    <td th:text="|*{product.getName()}|"></td>
+                    <td th:text="|*{product.getName()}|"></td>
+                    <td th:text="|${#numbers.formatDecimal(product.getPrice(), 1, 2, 'POINT')} €|"></td>
+                    <td>
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                            <a class="btn btn-danger"
+                               th:href="@{/recipe/add/{id}(id=*{product.getId()})}">AddRecipe</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</section>
+
+<footer class="footer_section">
+    <div th:replace="~{fragments/footer}"></div>
+</footer>
+<!-- end footer section -->
+
+</body>
+</html>
