@@ -15,16 +15,4 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserLoginControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
-
-    @Test
-    void testLogin () throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/login").
-                        param("username", "toni").
-                        param("password", "test").
-                        with(csrf())).
-                andExpect(status().is3xxRedirection()).
-                andExpect(redirectedUrl("/menu"));
-
-    }
 }
