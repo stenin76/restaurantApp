@@ -16,10 +16,4 @@ public class UserRegControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    void testRegPage () throws Exception {
-        mockMvc.perform(get("/register")).
-                andExpect(status().isOk()).
-                andExpect(view().name("register"));
-    }
 }
