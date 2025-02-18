@@ -45,7 +45,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: stenin76
+          name: Restaurant
       
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
