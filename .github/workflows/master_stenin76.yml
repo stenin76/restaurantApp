@@ -16,14 +16,13 @@ jobs:
       contents: read #This is required for actions/checkout
 
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'microsoft' #temurin
+          distribution: 'microsoft'
 
       - name: Build with Maven
         run: mvn clean install
@@ -31,7 +30,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: Restaurant
+          name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
@@ -40,16 +39,28 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-      
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+  
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: Restaurant
+          name: java-app
       
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BF3E963201F34CDC803A6F5844E50330 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7FD6DB1E1D7C471BB7A132EEF287D4CA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5CDEDB2D00F24E528E92C82E451D30CA }}
+
       - name: Deploy to Azure Web App
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: stenin76
+          app-name: 'stenin76'
+          slot-name: 'Production'
           package: '*.jar'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3555A2C5A2AB4B0496EA3CAC6127E97E }}
+          
