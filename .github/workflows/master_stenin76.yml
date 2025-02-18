@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Art
+      - name: Chekout Source
         uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
+          #distribution: 'temurin'
           java-version: '17'
 
       - name: Build with Maven
@@ -28,8 +29,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          name: Restaurant
+          path: ${{ github.workspace }}/target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
