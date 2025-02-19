@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://localhost:3306/stenin76-database?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    url: "jdbc:mysql://stenin76-server.mysql.database.azure.com:3306/stenin76-database?serverTimezone=UTC&sslmode=required&user=avltssumqs&password=pum$NQ8UUbUrf8sJ"
     username: avltssumqs
     password: pum$NQ8UUbUrf8sJ
   servlet:
