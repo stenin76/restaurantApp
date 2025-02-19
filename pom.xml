@@ -62,6 +62,21 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.azure.resourcemanager</groupId>
+            <artifactId>azure-resourcemanager-appservice</artifactId>
+            <version>2.47.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.azure.resourcemanager</groupId>
+            <artifactId>azure-resourcemanager-appplatform</artifactId>
+            <version>2.47.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.azure.resourcemanager</groupId>
+            <artifactId>azure-resourcemanager-sql</artifactId>
+            <version>2.47.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
