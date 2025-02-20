@@ -18,7 +18,7 @@ spring:
     # For MySQL 8
     database-platform: org.hibernate.dialect.MySQL8Dialect
     #For MySQL 5
-    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
     properties:
