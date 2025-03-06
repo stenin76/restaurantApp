@@ -18,8 +18,9 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "image_profile_url")
-    private String imageProfileUrl;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] profilePicture;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -29,6 +30,14 @@ public class UserEntity extends BaseEntity {
     private Set<Role> roles = new HashSet<>();
 
     public UserEntity() {}
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public String getUserName() {
         return userName;
@@ -60,13 +69,5 @@ public class UserEntity extends BaseEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public String getImageProfileUrl() {
-        return imageProfileUrl;
-    }
-
-    public void setImageProfileUrl(String imageProfileUrl) {
-        this.imageProfileUrl = imageProfileUrl;
     }
 }

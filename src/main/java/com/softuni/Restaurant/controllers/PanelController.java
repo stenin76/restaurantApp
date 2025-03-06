@@ -43,7 +43,7 @@ public class PanelController {
         List<Order> AllOrders = this.orderService.getAllOrders();
         model.addAttribute("allOrders", AllOrders);
 
-        return "/order-panel";
+        return "order-panel";
     }
 
     @GetMapping("/users-panel")

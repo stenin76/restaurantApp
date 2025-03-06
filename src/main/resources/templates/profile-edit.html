@@ -4,7 +4,15 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <th:block th:include="~{/fragments/head}"></th:block>
+  <meta charset="UTF-8">
+  <title>Restaurant</title>
+  <link rel="stylesheet" href="/css/reset-css.css"/>
+  <link rel="stylesheet" href="/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/responsive.css"/>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -37,7 +45,7 @@
                         th:method="post"
                         enctype="multipart/form-data">
                     <div class="mb-3">
-                      <img class="img-account-profile rounded-circle mb-2" src="/images/profile.jpg" alt="" width="300" height="300">
+                      <img th:src="${'/showProfilePicture'}" class="img-account-profile rounded-circle mb-2" width="300" height="300">
                     </div>
                     <div class="mb-3">
                       <input type="file" name="image" accept="image/*" class="form-control-file">

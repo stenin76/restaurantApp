@@ -7,13 +7,22 @@ import com.softuni.Restaurant.model.dto.UserRegisterDto;
 import com.softuni.Restaurant.model.enums.UserRoles;
 import com.softuni.Restaurant.repository.RoleRepository;
 import com.softuni.Restaurant.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -69,13 +78,37 @@ public class UserService {
         SecurityContextHolder.getContext().setAuthentication(newAuthentication);
     }
 
-    public void changeUserProfilePicture(String path) {
+    public void changeUserProfilePicture(MultipartFile file) throws IOException {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserEntity userToChangeProfilePicture = userRepository.findByUserName(auth.getName()).get();
 
-        userToChangeProfilePicture.setImageProfileUrl(path);
+        userToChangeProfilePicture.setProfilePicture (file.getBytes());
         this.userRepository.save(userToChangeProfilePicture);
+    }
+
+    public ResponseEntity<byte[]> showProfilePicture(String name) {
+
+        Optional<UserEntity> user = userRepository.findByUserName(name);
+
+        byte[] image = user.get().getProfilePicture(); // Retrieve image as byte array from database
+
+        if (image != null) {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG) // Or the appropriate content type
+                    .body(image);
+        } else {
+            // If image is null or not found, serve the default image from the folder
+            Path path = Paths.get("src/main/resources/static/images/profile.jpg");
+            try {
+                byte[] defaultImage = Files.readAllBytes(path);
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG) // Or the appropriate content type
+                        .body(defaultImage);
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+        }
     }
 
     public void addUserRole (Long id) {

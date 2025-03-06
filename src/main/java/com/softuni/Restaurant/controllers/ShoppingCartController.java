@@ -18,7 +18,7 @@ public class ShoppingCartController {
 
     @GetMapping("/shoppingCart")
     public ModelAndView shoppingCart() {
-        ModelAndView modelAndView = new ModelAndView("/shoppingCart");
+        ModelAndView modelAndView = new ModelAndView("shoppingCart");
         modelAndView.addObject("products", shoppingCartService.getProductsInCart());
         modelAndView.addObject("total", shoppingCartService.totalPrice());
         return modelAndView;
