@@ -79,16 +79,15 @@ public class ProfileController {
                     .addFlashAttribute("org.springframework.validation.BindingResult.changeUsernameDto", bindingResult);
             return "redirect:/profile-edit";
         }
-
         this.userService.changeUserName(changeUsernameDto);
-        redirectAttributes.addFlashAttribute("change_user_details_message", "Your account details have been updated.");
+            redirectAttributes
+                    .addFlashAttribute("change_user_details_message", "Your account details have been updated");
 
         return "redirect:/profile-edit";
     }
 
-    @PostMapping("/upload")
-    @ExceptionHandler
-    public String uploadImage(Model model, @RequestParam("image") MultipartFile file) throws IOException {
+    @PostMapping("/uploadImage")
+    public String uploadImage(@RequestParam("image") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
 
         StringBuilder fileNames = new StringBuilder();
 
@@ -96,12 +95,11 @@ public class ProfileController {
         fileNames.append(file.getOriginalFilename());
 
         if (Objects.requireNonNull(file.getOriginalFilename()).isBlank()) {
-            model.addAttribute("error1", "stop");
+            redirectAttributes.addFlashAttribute("error_message1", "You have not selected a picture");
             return "redirect:/profile-edit";
         }
-
-        model.addAttribute("msg", "Uploaded images: " + fileNames);
+        redirectAttributes.addFlashAttribute("msg", "Your profile picture has been updated");
         userService.changeUserProfilePicture(file);
-        return "redirect:/profile";
+        return "redirect:/profile-edit";
     }
 }
