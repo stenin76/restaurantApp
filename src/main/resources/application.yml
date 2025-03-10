@@ -2,8 +2,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://stenin-server.mysql.database.azure.com:3306/stenin-database?serverTimezone=UTC&sslmode=required&user=master&password=Verisitas76"
-    username: root
-    password: 1234
+    username: master
+    password: Verisitas76
   servlet:
     multipart:
       enabled: true
