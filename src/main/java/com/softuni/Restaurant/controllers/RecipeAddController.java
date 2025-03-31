@@ -22,7 +22,8 @@ public class RecipeAddController {
         this.recipeService = recipeService;
     }
 
-    private Long aLong;
+    private Long productId;
+
     @ModelAttribute("recipeAddDto")
     public RecipeAddDto iniRecipeAddDto() {
         return new RecipeAddDto();
@@ -30,7 +31,7 @@ public class RecipeAddController {
 
     @GetMapping("/recipe/add/{id}")
     public String addRecipe(@PathVariable Long id) {
-        aLong = id;
+        productId = id;
         return "recipe-add";
     }
 
@@ -50,7 +51,7 @@ public class RecipeAddController {
                     .addFlashAttribute("org.springframework.validation.BindingResult.recipeAddDto", bindingResult);
             return "redirect:/recipe-add";
         }
-        this.recipeService.addRecipe(recipeAddDto ,aLong);
+        this.recipeService.addRecipe(recipeAddDto ,productId);
 
         return "redirect:/menu";
     }

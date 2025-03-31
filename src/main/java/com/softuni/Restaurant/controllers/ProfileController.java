@@ -14,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
 
 
@@ -87,15 +85,15 @@ public class ProfileController {
     }
 
     @PostMapping("/uploadImage")
-    public String uploadImage(@RequestParam("image") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
-
-        StringBuilder fileNames = new StringBuilder();
-
-        Path fileNameAndPath = Paths.get(Objects.requireNonNull(file.getOriginalFilename()));
-        fileNames.append(file.getOriginalFilename());
+    public String uploadImage(@RequestParam("image") MultipartFile file,
+                                RedirectAttributes redirectAttributes) throws IOException {
 
         if (Objects.requireNonNull(file.getOriginalFilename()).isBlank()) {
             redirectAttributes.addFlashAttribute("error_message1", "You have not selected a picture");
+            return "redirect:/profile-edit";
+        }
+        if (file.getSize() > 2 * 1024 * 1024) {
+            redirectAttributes.addFlashAttribute("error_message2", "File size exceeds the maximum limit of 2MB");
             return "redirect:/profile-edit";
         }
         redirectAttributes.addFlashAttribute("msg", "Your profile picture has been updated");

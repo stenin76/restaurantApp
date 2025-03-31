@@ -43,8 +43,8 @@
                         </div>
                     </th>
                     <td th:text="|*{product.getName()}|"></td>
-                    <td th:text="|*{product.getName()}|"></td>
-                    <td th:text="|${#numbers.formatDecimal(product.getPrice(), 1, 2, 'POINT')} €|"></td>
+                    <td th:text="|*{product.getDescription()}|"></td>
+                    <td th:text="|${#numbers.formatDecimal(product.getPrice(), 1, 2, 'POINT')}€|"></td>
                     <td>
                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                             <a class="btn btn-danger"

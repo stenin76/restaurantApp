@@ -30,6 +30,5 @@ public class RecipeService {
         Product productToAddRecipe = this.productService.findById(id);
         productToAddRecipe.setRecipe(recipe);
         this.productRepository.save(productToAddRecipe);
-
     }
 }

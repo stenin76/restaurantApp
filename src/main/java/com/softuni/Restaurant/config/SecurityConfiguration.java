@@ -23,7 +23,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/","/index","/about", "/login", "/register", "/menu","/resturant1","/resturant2", "/users/login-error").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/product-add","/order-panel", "/product-panel", "/users-panel", "/recipe-add").hasRole(UserRoles.ADMIN.name())
-                        .requestMatchers("/cart", "/order-add", "/profile","/profile-edit", "/shoppingCart").hasRole(UserRoles.USER.name())
+                            .requestMatchers("/cart", "/order-add", "/profile","/profile-edit", "/shoppingCart").hasRole(UserRoles.USER.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> formLogin

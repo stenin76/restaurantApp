@@ -31,6 +31,5 @@ public class RoleInit implements CommandLineRunner {
                 this.roleRepository.save(role);
             }
         }
-
     }
 }

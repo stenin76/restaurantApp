@@ -31,8 +31,8 @@ public class PanelController {
     @GetMapping("/product-panel")
     public String productPanel(Model model) {
 
-        List<Product> AllProducts = this.productService.getAllProducts();
-        model.addAttribute("allProducts", AllProducts);
+        List<Product> allProducts = this.productService.getAllProducts();
+        model.addAttribute("allProducts", allProducts);
 
         return "product-panel";
     }
@@ -40,8 +40,8 @@ public class PanelController {
     @GetMapping("/order-panel")
     public String orderPanel(Model model) {
 
-        List<Order> AllOrders = this.orderService.getAllOrders();
-        model.addAttribute("allOrders", AllOrders);
+        List<Order> allOrders = this.orderService.getAllOrders();
+        model.addAttribute("allOrders", allOrders);
 
         return "order-panel";
     }

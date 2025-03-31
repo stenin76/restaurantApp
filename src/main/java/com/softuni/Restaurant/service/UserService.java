@@ -81,8 +81,9 @@ public class UserService {
     public void changeUserProfilePicture(MultipartFile file) throws IOException {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserEntity userToChangeProfilePicture = userRepository.findByUserName(auth.getName()).get();
+        UserEntity userToChangeProfilePicture = userRepository.findByUserName(auth.getName()).orElse(null);
 
+        assert userToChangeProfilePicture != null;
         userToChangeProfilePicture.setProfilePicture (file.getBytes());
         this.userRepository.save(userToChangeProfilePicture);
     }
@@ -91,7 +92,7 @@ public class UserService {
 
         Optional<UserEntity> user = userRepository.findByUserName(name);
 
-        byte[] image = user.get().getProfilePicture(); // Retrieve image as byte array from database
+        byte[] image = user.orElseThrow().getProfilePicture(); // Retrieve image as byte array from database
 
         if (image != null) {
             return ResponseEntity.ok()
@@ -134,6 +135,6 @@ public class UserService {
     public UserEntity getLoggedUserDetails() {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return userRepository.findByUserName(auth.getName()).get();
+        return userRepository.findByUserName(auth.getName()).orElse(null);
     }
 }

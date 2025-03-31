@@ -54,6 +54,9 @@
                       <div th:if="${error_message1}" class="errors alert alert-danger">
                         <p th:text="${error_message1}"></p>
                       </div>
+                      <div th:if="${error_message2}" class="errors alert alert-danger">
+                        <p th:text="${error_message2}"></p>
+                      </div>
                       <div class="mb-3">
                         <input type="file" name="image" accept="image/*" class="form-control-file">
                       </div>

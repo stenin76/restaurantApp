@@ -14,9 +14,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Autowired
     private RequestInterceptor requestInterceptor;
 
+    @Autowired
+    private LoggingInterceptorIp loggingInterceptorIp;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggingInterceptor);
         registry.addInterceptor(requestInterceptor);
+        registry.addInterceptor(loggingInterceptorIp)
+                .addPathPatterns("/**");  // Apply it to all URLs
     }
 }
