@@ -1,6 +1,6 @@
 insert into roles (id, user_role)
 values (1, 'ADMIN'),
-values (2, 'USER');
+       (2, 'USER');
 
 insert into users (id, username, email, password)
 values (1, 'Admin', 'admin@admin.com', '$2a$10$HzqnEszPXL962Yo0WFQFQu6mT2gDr/jDyZeheSmvHISlGxD/PqH.C');
