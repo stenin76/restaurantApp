@@ -1,7 +1,7 @@
 #Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 #More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy JAR app to Azure Web App - stenin-resaurant
+name: Build and deploy JAR app to Azure Web App - stenin-restaurant
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'stenin-resaurant'
+          app-name: 'stenin-restaurant'
           slot-name: 'Production'
           package: '*.jar'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_12AB4E8C14B94C9E8564152CE169A4CB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BAF327618C014BACADD07B96D0D7464F }}
