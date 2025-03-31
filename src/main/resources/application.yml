@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://stenin-server.mysql.database.azure.com:3306/stenin-database?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    url: "jdbc:mysql://stenin-server.mysql.database.azure.com:3306/stenin-database?serverTimezone=UTC&useSSL=true&requireSSL=false"
     username: master
     password: Verisitas76
   servlet:
